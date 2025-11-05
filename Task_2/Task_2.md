@@ -10,7 +10,7 @@ Trang web được sử dụng cơ chế bảo vệ WAF. Mục tiêu là thực 
 
 Truy vấn thử nghiệm đơn giản với `hello`. Kết quả là hiển thị giá trị tham số truy vấn trên giao diện với thẻ `div`.
 
-<img src="imgaes/image_1.png">
+<img src="images/image_1.png">
 
 Truy vấn với các ký tự `<` `>` `/` `;` `'` `.`. Kết quả cho thấy các ký tự `>` `/` bị WAF blocked từ khoá.
 
@@ -57,12 +57,17 @@ Kết quả truy vấn không thực hiện lệnh sự kiện `onerrer='alert(1
 Các truy vấn gây sự kiện không được thực hiện.
 
 Sử dụng thuộc tính `data` cùng thẻ `<iframe>`. Truy vấn như sau: `<iframe src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="></iframe>` dưới dạng: ```%3Ciframe%20src=%22data:text%26%2347;html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==%22%26%2362;%3C%26%2347;iframe%26%2362;```
-    `data:` : Báo hiệu đây là dữ liệu nhúng.
-    `text/html` : Chỉ định loại dữ liệu là HTML (trình duyệt sẽ xử lý nó như một trang HTML).
-    `base64,` : Báo hiệu dữ liệu được mã hóa bằng `Base64`.
-    `PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==` : Đây là nội dung đã bị mã hóa.
-        Đoạn mã gốc: `<script>alert(1)</script>`.
-    Trình duyệt tạo ra một `iframe` (một khung nội tuyến, về cơ bản là một trang web nhỏ bên trong trang web chính). Nội dung của iframe này chính là đoạn mã đã được mã hoá `base64`.
+
+    - `data:` : Báo hiệu đây là dữ liệu nhúng.
+
+    - `text/html` : Chỉ định loại dữ liệu là HTML (trình duyệt sẽ xử lý nó như một trang HTML).
+
+    - `base64,` : Báo hiệu dữ liệu được mã hóa bằng `Base64`.
+
+    - `PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==` : Đây là nội dung đã bị mã hóa.
+        - Đoạn mã gốc: `<script>alert(1)</script>`.
+
+    - Trình duyệt tạo ra một `iframe` (một khung nội tuyến, về cơ bản là một trang web nhỏ bên trong trang web chính). Nội dung của iframe này chính là đoạn mã đã được mã hoá `base64`.
 
 Kết quả của truy vấn là tấn công XSS bypass được WAF.
 
